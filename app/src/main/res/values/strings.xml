@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Applock</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="enable_accessibility_service_summary">"Enable this service can decrease 30% power usage. Support environment protection, highly recommend!
+
+Please be assured：
+This feature is only used to decrease power usage and we never collect any personal information."</string>
+
+</resources>

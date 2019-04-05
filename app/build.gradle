@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "com.yasinzhang.applock"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:' + rootProject.appcompatVersion
+    implementation 'androidx.recyclerview:recyclerview:' + rootProject.recyclerviewVersion
+    implementation 'com.google.android.material:material:' + rootProject.materialVersion
+    implementation 'androidx.constraintlayout:constraintlayout:' + rootProject.constraintlayoutVersion
+    testImplementation 'junit:junit:' + rootProject.junitVersion
+    androidTestImplementation 'androidx.test:runner:' + rootProject.runnerVersion
+    androidTestImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoVersion
+    implementation 'com.itsxtt:patternlockview:' + rootProject.comitsxttpatternlockviewVersion
+    implementation 'androidx.lifecycle:lifecycle-extensions:' + rootProject.archLifecycleVersion
+    implementation 'androidx.lifecycle:lifecycle-common-java8:' + rootProject.archLifecycleVersion
+    implementation 'androidx.room:room-runtime:' + rootProject.roomVersion
+    annotationProcessor 'androidx.room:room-compiler:' + rootProject.roomVersion
+}
