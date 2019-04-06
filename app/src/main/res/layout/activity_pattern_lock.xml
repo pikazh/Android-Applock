@@ -7,11 +7,13 @@
 
     <com.itsxtt.patternlock.PatternLockView
         android:id="@+id/pattern_lock_view"
+        style="@style/PatternLockView.JDStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="72dp"
         android:layout_marginRight="72dp"
-        style="@style/PatternLockView.JDStyle">
+        android:rowCount="4"
+        android:columnCount="3">
 
     </com.itsxtt.patternlock.PatternLockView>
 </LinearLayout>

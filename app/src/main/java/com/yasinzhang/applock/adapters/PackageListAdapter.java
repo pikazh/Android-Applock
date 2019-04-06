@@ -1,6 +1,7 @@
 package com.yasinzhang.applock.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,7 +10,7 @@ import com.yasinzhang.applock.R;
 
 import java.util.List;
 
-import androidx.annotation.*;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.MyViewHolder> {
@@ -18,16 +19,19 @@ public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.
 
     List<String> datas;
 
-    public PackageListAdapter(Context context, List<String> datas) {
+    public PackageListAdapter(Context context) {
         this.context = context;
-        this.datas = datas;
+    }
+
+    public void setDates(){
+
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = View.inflate(context, R.layout.package_item_view, null);
+        View v = LayoutInflater.from(context).inflate(R.layout.package_item_view, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -35,6 +39,9 @@ public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.textView.setText(datas.get(position));
+        holder.itemView.setOnClickListener(v -> {
+            //v.getTag()
+        });
     }
 
     @Override
@@ -48,7 +55,7 @@ public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.text);
+            textView = itemView.findViewById(R.id.app_name);
         }
     }
 }
