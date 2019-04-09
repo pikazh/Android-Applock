@@ -46,7 +46,7 @@ public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.
 
     @Override
     public int getItemCount() {
-        return datas.size();
+        return 0;
     }
 
 

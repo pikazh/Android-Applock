@@ -12,24 +12,24 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
 public interface TimerDao {
-    @Query("select * from Timer")
-    List<Timer> loadTimers();
+    @Query("select * from timer")
+    List<TimerRecord> loadTimers();
 
     @Insert(onConflict = IGNORE)
-    void insertTimer(Timer timer);
+    void insertTimer(TimerRecord timer);
 
     @Update(onConflict = REPLACE)
-    void updateTimer(Timer timer);
+    void updateTimer(TimerRecord timer);
 
-    @Query("update Timer set enabled = :enabled where id =:id")
+    @Query("update timer set enabled = :enabled where id =:id")
     void updateTimerWithEnabled(int enabled, int id);
 
-    @Query("update Timer set repeat = :repeat where id =:id")
+    @Query("update timer set repeat = :repeat where id =:id")
     void updateTimerWithRepeat(int repeat, int id);
 
-    @Query("update Timer set begin_time = :beginTime where id =:id")
+    @Query("update timer set begin_time = :beginTime where id =:id")
     void updateTimerWithBeginTime(String beginTime, int id);
 
-    @Query("delete from Timer where id = :id")
+    @Query("delete from timer where id = :id")
     void deleteTimer(int id);
 }

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.yasinzhang.applock.R;
 import com.yasinzhang.applock.adapters.PackageListAdapter;
-import com.yasinzhang.applock.appinfo.AppInfoManager;
+import com.yasinzhang.applock.asynctasks.AppInfoRetrieveTask;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,11 +31,13 @@ public class PackageLockListFragment extends Fragment {
         mAdapter = new PackageListAdapter(context);
         mAppListView.setAdapter(mAdapter);
 
-        new AppInfoManager(context).getAppinfos(this, infos -> {
-           // mAdapter
-        });
-
         return rootView;
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+
     }
 
 }

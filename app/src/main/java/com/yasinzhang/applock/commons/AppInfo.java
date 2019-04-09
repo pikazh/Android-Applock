@@ -1,4 +1,4 @@
-package com.yasinzhang.applock.appinfo;
+package com.yasinzhang.applock.commons;
 
 import android.graphics.drawable.Drawable;
 
@@ -15,10 +15,10 @@ public class AppInfo {
 
     public static final int FLAG_GENERAL_SYSTEM_APP = 1<<6;
 
-    protected String appName = null;
-    protected String packageName = null;
-    protected Drawable appIcon = null;
-    protected boolean isLocked = false;
+    public String appName = null;
+    public String packageName = null;
+    public Drawable appIcon = null;
+    public boolean isLocked = false;
     public int flag = 0;
 
     public String getDescription(){

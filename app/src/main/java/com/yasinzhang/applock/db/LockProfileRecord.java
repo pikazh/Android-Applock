@@ -8,9 +8,9 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-@Entity
+@Entity(tableName = "lock_profile")
 @TypeConverters(AppStringTypeConverter.class)
-public class Profile {
+public class LockProfileRecord {
     @PrimaryKey(autoGenerate = true)
     public int id;
 
@@ -21,7 +21,7 @@ public class Profile {
     public List<String> packageNames;
 
 
-    public static class ProfileBasicInfo {
+    public static class LockProfileBasicInfo {
 
         public int id;
         public String name;

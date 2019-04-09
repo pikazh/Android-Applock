@@ -1,13 +1,16 @@
 <resources>
     <string name="app_name">Applock</string>
+    <string name="app_service_appstatswatcher">com.yasinzhang.applock.AppStatsWatcher</string>
     <string name="title_app_list">Applist</string>
     <string name="title_profiles">Profiles</string>
     <string name="title_time_scheduler">Timer</string>
-    <string name="enable_accessibility_service_summary">"Enable this service can decrease 30% power usage. Support environment protection, highly recommend!
-
-Please be assured：
-This feature is only used to decrease power usage and we never collect any personal information."</string>
     <string name="app_icon_desc">app icon</string>
     <string name="app_lock_status">app lock status</string>
-
+    <string name="set_pattern_lock">Draw an unlock pattern</string>
+    <string name="confirm_pattern_lock">Draw pattern again to confirm</string>
+    <string name="verify_pattern_lock">Draw the pattern for authentication</string>
+    <string name="pattern_lock_dots_not_enough">Connect at least %1$d dots. Try again.</string>
+    <string name="pattern_lock_drawing">Release fingers when done</string>
+    <string name="pattern_lock_inconsistent">Patterns are inconsistent. Try again.</string>
+    <string name="pattern_lock_incorrect">Incorrect pattern. Try again.</string>
 </resources>
