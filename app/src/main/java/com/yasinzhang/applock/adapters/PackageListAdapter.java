@@ -1,61 +1,66 @@
 package com.yasinzhang.applock.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yasinzhang.applock.R;
+import com.yasinzhang.applock.commons.AppInfo;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.MyViewHolder> {
+public class PackageListAdapter extends RecyclerView.Adapter<PackageListAdapter.PackageListViewHolder> {
 
-    Context context;
+    List<AppInfo> mData = null;
 
-    List<String> datas;
-
-    public PackageListAdapter(Context context) {
-        this.context = context;
-    }
-
-    public void setDates(){
-
+    public void setData(List<AppInfo> mData){
+        this.mData = mData;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PackageListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(context).inflate(R.layout.package_item_view, parent, false);
-        return new MyViewHolder(v);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.package_item_view, parent, false);
+        return new PackageListViewHolder(v);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.textView.setText(datas.get(position));
-        holder.itemView.setOnClickListener(v -> {
-            //v.getTag()
-        });
+    public void onBindViewHolder(@NonNull PackageListViewHolder holder, int position) {
+        AppInfo info = mData.get(position);
+        holder.mAppName.setText(info.appName);
+        holder.mAppDesc.setText(info.getDescription());
+        holder.mIcon.setImageDrawable(info.appIcon);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if(mData == null)
+            return 0;
+
+        return mData.size();
     }
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
+    class PackageListViewHolder extends RecyclerView.ViewHolder {
+        TextView mAppName;
+        TextView mAppDesc;
+        ImageView mIcon;
 
-        public MyViewHolder(View itemView) {
+
+        public PackageListViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.app_name);
+            mAppName = itemView.findViewById(R.id.app_name);
+            mAppDesc = itemView.findViewById(R.id.app_desc);
+            mIcon = itemView.findViewById(R.id.app_icon);
         }
     }
 }

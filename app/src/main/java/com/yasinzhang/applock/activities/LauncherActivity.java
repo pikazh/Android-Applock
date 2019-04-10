@@ -13,6 +13,7 @@ import com.yasinzhang.applock.R;
 import com.yasinzhang.applock.asynctasks.AsyncTaskWrapper;
 import com.yasinzhang.applock.commons.Preference;
 import com.yasinzhang.applock.db.AppDatabase;
+import com.yasinzhang.applock.services.AppStatsRetrieve;
 import com.yasinzhang.applock.utils.MD5Util;
 
 import org.jetbrains.annotations.*;
@@ -70,6 +71,11 @@ public class LauncherActivity extends AppCompatActivity implements PatternLockVi
         super.finish();
         if(mPassed){
             startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }else{
+            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+            homeIntent.addCategory( Intent.CATEGORY_HOME );
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
         }
     }
 

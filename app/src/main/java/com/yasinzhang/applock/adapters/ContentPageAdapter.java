@@ -1,6 +1,6 @@
 package com.yasinzhang.applock.adapters;
 
-import com.yasinzhang.applock.fragments.PackageLockListFragment;
+import com.yasinzhang.applock.fragments.PackageListFragment;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,7 +17,7 @@ public class ContentPageAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        return new PackageLockListFragment();
+        return new PackageListFragment();
     }
 
     @Override

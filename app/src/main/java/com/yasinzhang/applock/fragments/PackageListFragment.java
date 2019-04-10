@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PackageLockListFragment extends Fragment {
+public class PackageListFragment extends Fragment {
 
     RecyclerView mAppListView = null;
     PackageListAdapter mAdapter = null;
@@ -28,8 +28,15 @@ public class PackageLockListFragment extends Fragment {
 
         Context context = this.getActivity();
         mAppListView.setLayoutManager(new LinearLayoutManager(context));
-        mAdapter = new PackageListAdapter(context);
+        mAdapter = new PackageListAdapter();
         mAppListView.setAdapter(mAdapter);
+
+        AppInfoRetrieveTask getDataTask = new AppInfoRetrieveTask();
+        getDataTask.registerCallback(this, datas->{
+            mAdapter.setData(datas);
+            mAdapter.notifyDataSetChanged();
+        });
+        getDataTask.start();
 
         return rootView;
     }

@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
             Intent myIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
             startActivityForResult(myIntent, 1);
         }
+
+        //startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS));
     }
 
     private void showNormalDialog(){

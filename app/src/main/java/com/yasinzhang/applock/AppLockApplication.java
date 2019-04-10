@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.ComponentCallbacks2;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -67,7 +68,10 @@ public class AppLockApplication extends Application implements Application.Activ
 
         task.start();
 
-        startService(new Intent(this, AppStatsRetrieve.class));
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O)
+            this.startService(new Intent(this, AppStatsRetrieve.class));
+        else
+            this.startForegroundService(new Intent(this, AppStatsRetrieve.class));
     }
 
     @Override

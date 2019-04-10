@@ -28,11 +28,15 @@ public class OverLayPatternLockController implements PatternLockView.OnPatternLi
     private TextView mTips = null;
     private OverLayLayout mOverLayLayout = null;
     private String mPass = null;
+    private String mVerifiedIndentifier = null;
+    private String mCachedVerifyIdentifier = null;
     private boolean mIsShowing = false;
 
-    public void showAndCheckPattern(String patternPassword, Drawable icon){
-        assert(patternPassword != null && !patternPassword.isEmpty());
+    public void showAndCheckPattern(String verifyIdentifier, String patternPassword, Drawable icon){
+        assert(verifyIdentifier != null && patternPassword != null && !patternPassword.isEmpty());
 
+        mCachedVerifyIdentifier = verifyIdentifier;
+        mVerifiedIndentifier = null;
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT,
@@ -58,6 +62,14 @@ public class OverLayPatternLockController implements PatternLockView.OnPatternLi
         mPass = patternPassword;
     }
 
+    public String getVerifiedIdentifier(){
+        return mVerifiedIndentifier==null?"":mVerifiedIndentifier;
+    }
+
+    public void clearVerifiedIdentifier(){
+        mVerifiedIndentifier = null;
+    }
+
     public boolean isShowing(){
         return mIsShowing;
     }
@@ -76,14 +88,15 @@ public class OverLayPatternLockController implements PatternLockView.OnPatternLi
     public boolean onComplete(@NotNull ArrayList<Integer> arrayList) {
         if (arrayList.size() < connect_least_dots) {
             mTips.setText(String.format(AppLockApplication.getInstance().getResources().getString(R.string.pattern_lock_dots_not_enough), connect_least_dots));
-            setTipsColorByRrsourceId(android.R.color.holo_red_dark);
+            setTipsColorByResourceId(android.R.color.holo_red_dark);
         } else {
 
             if (!verifyPatternLock(arrayList)) {
-                setTipsColorByRrsourceId(android.R.color.holo_red_dark);
+                setTipsColorByResourceId(android.R.color.holo_red_dark);
                 mTips.setText(R.string.pattern_lock_incorrect);
             }else{
-                //closeWithResult(true);
+                mVerifiedIndentifier = mCachedVerifyIdentifier;
+                close();
                 return true;
             }
         }
@@ -91,7 +104,7 @@ public class OverLayPatternLockController implements PatternLockView.OnPatternLi
         return false;
     }
 
-    protected void setTipsColorByRrsourceId(int resourceColorId){
+    protected void setTipsColorByResourceId(int resourceColorId){
         Context context = AppLockApplication.getInstance();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             mTips.setTextColor(context.getResources().getColor(resourceColorId, context.getTheme()));
@@ -129,6 +142,7 @@ public class OverLayPatternLockController implements PatternLockView.OnPatternLi
         mTips = null;
         mOverLayLayout = null;
         mPass = null;
+        mCachedVerifyIdentifier = null;
     }
 
     class OverLayLayout extends LinearLayout

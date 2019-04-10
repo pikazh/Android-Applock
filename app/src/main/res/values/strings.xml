@@ -13,4 +13,5 @@
     <string name="pattern_lock_drawing">Release fingers when done</string>
     <string name="pattern_lock_inconsistent">Patterns are inconsistent. Try again.</string>
     <string name="pattern_lock_incorrect">Incorrect pattern. Try again.</string>
+    <string name="app_description">Protect Your Privacy</string>
 </resources>
